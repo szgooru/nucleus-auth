@@ -1,5 +1,6 @@
 package org.gooru.nucleus.handlers.auth.bootstrap;
 
+import org.gooru.nucleus.handlers.auth.app.components.RedisServer;
 import org.gooru.nucleus.handlers.auth.constants.MessageConstants;
 import org.gooru.nucleus.handlers.auth.constants.MessagebusEndpoints;
 import org.gooru.nucleus.handlers.auth.processors.ProcessorBuilder;
@@ -17,6 +18,9 @@ public class AuthVerticle extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
+    
+    startApplication();
+
     EventBus eb = vertx.eventBus();
 
     eb.consumer(MessagebusEndpoints.MBEP_AUTH, message -> {
@@ -41,6 +45,11 @@ public class AuthVerticle extends AbstractVerticle {
   @Override
   public void stop() throws Exception {
     super.stop();
+    RedisServer.getInstance().finalizeRedisClient();
+  }
+  
+  private void startApplication() {
+    RedisServer.getInstance().initializeRedisClient(vertx, config());
   }
 
 }

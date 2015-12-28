@@ -21,7 +21,6 @@
     </appender>
 
     <logger name="org.gooru.nucleus" level="debug">
-            <appender-ref ref="STDOUT"/>
     </logger>
 
 
