@@ -35,6 +35,8 @@ Once you started redis server, go to command line and type 'redis-cli' to login 
 
 > set fbc9d5b6-ad22-11e5-9250-f8a963065976 '{"userId":"fbc9d5b6-ad22-11e5-9250-f8a963065976","userName":"gooru","prefs":{"default_subject_code":"GUT.M","standard_framework_code":"CSS"},"provided_at":"1450078474078","client_id":"df138e62-ad23-11e5-9250-f8a963065976"}' EX 3600
 
-Syntax for above command is -> set <session-token> <value> EX <expiry-time>
+Syntax for above command is -> set [session-token] [value] EX [expiry-time]
+
+where value is JSON and expiry-time is in seconds
 
 * For Production, proper auth system should be in place which will actually insert session token key in redis. 
